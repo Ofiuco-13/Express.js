@@ -1,11 +1,21 @@
 const express = require("express");
 const app = express();
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send("Peticion GET recibida");
 });
 
-app.post("/about", (req, res) => {
+app.get("/user", (req, res) => {
+  res.json({
+    username: "Emma",
+    lastname: "Martinez",
+  });
+});
+
+app.post("/user", (req, res) => {
+  console.log(req.body);
   res.send("Peticion POST recibida");
 });
 
