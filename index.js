@@ -1,7 +1,13 @@
 const express = require("express");
 const app = express();
 
+function logger(req, res, next) {
+  console.log(`Ruta recibida: ${req.protocol}://${req.get("host")}${req.originalUrl}`);
+  next();
+}
+
 app.use(express.json());
+app.use(logger);
 
 app.get("/", (req, res) => {
   res.send("Peticion GET recibida");
@@ -20,8 +26,9 @@ app.post("/user/:id", (req, res) => {
   res.send("Peticion POST recibida");
 });
 
-app.put("/contact", (req, res) => {
-  res.send("Peticion PUT recibida");
+app.put("/contact/:id", (req, res) => {
+  console.log(req.body);
+  res.send(`Usuario ${req.params.id} actualizado`);
 });
 
 app.delete("/user/:id", (req, res) => {
