@@ -14,8 +14,9 @@ app.get("/user", (req, res) => {
   });
 });
 
-app.post("/user", (req, res) => {
+app.post("/user/:id", (req, res) => {
   console.log(req.body);
+  console.log(req.params);
   res.send("Peticion POST recibida");
 });
 
