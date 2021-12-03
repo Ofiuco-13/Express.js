@@ -24,8 +24,8 @@ app.put("/contact", (req, res) => {
   res.send("Peticion PUT recibida");
 });
 
-app.delete("/test", (req, res) => {
-  res.send("<h1>Peticion DELETE recibid</h1>");
+app.delete("/user/:id", (req, res) => {
+  res.send(`Usuario ${req.params.id} eliminado satisfactoriamente`);
 });
 
 app.listen(5000, () => {
