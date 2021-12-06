@@ -1,13 +1,9 @@
 const express = require("express");
+const morgan = require("morgan");
 const app = express();
 
-function logger(req, res, next) {
-  console.log(`Ruta recibida: ${req.protocol}://${req.get("host")}${req.originalUrl}`);
-  next();
-}
-
 app.use(express.json());
-app.use(logger);
+app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
   res.send("Peticion GET recibida");
@@ -17,7 +13,7 @@ app.get("/user", (req, res) => {
   res.json({
     username: "Emma",
     lastname: "Martinez",
-  });
+  }); //zchrus@gmail.com
 });
 
 app.post("/user/:id", (req, res) => {
