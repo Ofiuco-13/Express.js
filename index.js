@@ -31,6 +31,8 @@ app.delete("/user/:id", (req, res) => {
   res.send(`Usuario ${req.params.id} eliminado satisfactoriamente`);
 });
 
+app.use(express.static('public'));
+
 app.listen(5000, () => {
   console.log("Servidor funcionando en puerto 5000");
 });
