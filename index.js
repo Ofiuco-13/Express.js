@@ -2,18 +2,21 @@ const express = require("express");
 const morgan = require("morgan");
 const app = express();
 
+//Settings
+app.set("appName", "Pharmaceutical MERN");
+app.set("port", 3000);
+
+//Middlewares
 app.use(express.json());
 app.use(morgan("dev"));
 
-app.get("/", (req, res) => {
-  res.send("Peticion GET recibida");
-});
+//Rutas
 
 app.get("/user", (req, res) => {
   res.json({
     username: "Emma",
     lastname: "Martinez",
-  }); //zchrus@gmail.com
+  });
 });
 
 app.post("/user/:id", (req, res) => {
@@ -31,8 +34,9 @@ app.delete("/user/:id", (req, res) => {
   res.send(`Usuario ${req.params.id} eliminado satisfactoriamente`);
 });
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 
-app.listen(5000, () => {
-  console.log("Servidor funcionando en puerto 5000");
+app.listen(app.get("port"), () => {
+  console.log(app.get("appName"));
+  console.log("Servidor funcionando en puerto", app.get("port"));
 });
